@@ -981,7 +981,7 @@ def _gcd_terms(terms, isprimitive=False, fraction=True):
     return cont, numer, denom
 
 
-def gcd_terms(terms, isprimitive=False, clear=True, fraction=True):
+def gcd_terms(terms:Expr, isprimitive:bool=False, clear:bool=True, fraction:bool=True):
     """Compute the GCD of ``terms`` and put them together.
 
     Parameters
@@ -1157,7 +1157,7 @@ def _factor_sum_int(expr, **kwargs):
         return i * expr.func(d, *limits)
 
 
-def factor_terms(expr: Expr | complex, radical=False, clear=False, fraction=False, sign=True) -> Expr:
+def factor_terms(expr: Expr | complex, radical:bool=False, clear:bool=False, fraction:bool=False, sign:bool=True) -> Expr:
     """Remove common factors from terms in all arguments without
     changing the underlying structure of the expr. No expansion or
     simplification (and no processing of non-commutatives) is performed.

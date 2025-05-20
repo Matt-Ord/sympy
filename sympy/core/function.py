@@ -32,7 +32,8 @@ There are three types of functions implemented in SymPy:
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Union
+from typing_extensions import Unpack
 from collections.abc import Iterable
 import copyreg
 
@@ -2513,8 +2514,8 @@ def diff(f, *symbols, **kwargs):
     return _derivative_dispatch(f, *symbols, **kwargs)
 
 
-def expand(e, deep=True, modulus=None, power_base=True, power_exp=True,
-        mul=True, log=True, multinomial=True, basic=True, **hints):
+def expand(e:Expr, deep:bool=True, modulus:Union[Expr, None]=None, power_base:bool=True, power_exp:bool=True,
+        mul:bool=True, log:bool=True, multinomial:bool=True, basic:bool=True, **hints:bool) -> Expr:
     r"""
     Expand an expression using methods given as hints.
 

@@ -6624,7 +6624,7 @@ def sqf(f, *gens, **args):
 
 
 @public
-def factor_list(f, *gens, **args):
+def factor_list(f:Expr, *gens, **args):
     """
     Compute a list of irreducible factors of ``f``.
 
@@ -6642,7 +6642,7 @@ def factor_list(f, *gens, **args):
 
 
 @public
-def factor(f, *gens, deep=False, **args):
+def factor(f:Expr, *gens, deep:bool=False, **args:bool)->Expr:
     """
     Compute the factorization of expression, ``f``, into irreducibles. (To
     factor an integer into primes, use ``factorint``.)

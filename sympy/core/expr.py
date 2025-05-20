@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, overload
+from typing import TYPE_CHECKING, Union, overload
 from collections.abc import Iterable, Mapping
 from functools import reduce
 import re
@@ -3665,8 +3665,8 @@ class Expr(Basic, EvalfMixin):
         return (expr, hit)
 
     @cacheit
-    def expand(self, deep=True, modulus=None, power_base=True, power_exp=True,
-            mul=True, log=True, multinomial=True, basic=True, **hints):
+    def expand(self, deep:bool=True, modulus:Union[Expr, None]=None, power_base:bool=True, power_exp:bool=True,
+            mul:bool=True, log:bool=True, multinomial:bool=True, basic:bool=True, **hints):
         """
         Expand an expression using hints.
 
