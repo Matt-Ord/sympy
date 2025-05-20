@@ -9,6 +9,7 @@ from sympy.core.power import Pow
 from sympy.physics.quantum import Commutator, AntiCommutator
 from sympy.physics.quantum.boson import BosonOp
 from sympy.physics.quantum.fermion import FermionOp
+from sympy.core.expr import Expr
 
 __all__ = [
     'normal_order',
@@ -124,8 +125,12 @@ def _normal_ordered_form_terms(expr, independent=False, recursive_limit=10,
     return Add(*new_terms)
 
 
-def normal_ordered_form(expr, independent=False, recursive_limit=10,
-                        _recursive_depth=0):
+def normal_ordered_form(
+    expr: Expr,
+    independent: bool = False,
+    recursive_limit: int = 10,
+    _recursive_depth: int = 0,
+) -> Expr:
     """Write an expression with bosonic or fermionic operators on normal
     ordered form, where each term is normally ordered. Note that this
     normal ordered form is equivalent to the original expression.
