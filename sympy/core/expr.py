@@ -1401,7 +1401,7 @@ class Expr(Basic, EvalfMixin):
                                  [ci for ci in c if list(self.args).count(ci) > 1])
         return [c, nc]
 
-    def coeff(self, x: Expr, n=1, right=False, _first=True):
+    def coeff(self, x: Expr, n:int=1, right:bool=False, _first:bool=True) -> Expr:
         """
         Returns the coefficient from the term(s) containing ``x**n``. If ``n``
         is zero then all terms independent of ``x`` will be returned.

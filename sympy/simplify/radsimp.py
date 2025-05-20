@@ -1,8 +1,10 @@
 from collections import defaultdict
+from typing import Union
 
 from sympy.core import sympify, S, Mul, Derivative, Pow
 from sympy.core.add import _unevaluated_Add, Add
 from sympy.core.assumptions import assumptions
+from sympy.core.expr import Expr
 from sympy.core.exprtools import Factors, gcd_terms
 from sympy.core.function import _mexpand, expand_mul, expand_power_base
 from sympy.core.mul import _keep_coeff, _unevaluated_Mul, _mulsort
@@ -19,7 +21,7 @@ from sympy.utilities.iterables import iterable, sift
 
 
 
-def collect(expr, syms, func=None, evaluate=None, exact=False, distribute_order_term=True):
+def collect(expr:Expr, syms:Union[Expr, list[Expr]], func=None, evaluate:Union[bool, None]=None, exact:bool=False, distribute_order_term:bool=True)-> Expr:
     """
     Collect additive terms of an expression.
 

@@ -1629,7 +1629,7 @@ class Derivative(Expr):
         variable_count.append((v, 1))
         return self.func(self.expr, *variable_count, evaluate=False)
 
-    def doit(self, **hints):
+    def doit(self, **hints) -> Expr:
         expr = self.expr
         if hints.get('deep', True):
             expr = expr.doit(**hints)
