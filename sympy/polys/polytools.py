@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from functools import wraps, reduce
 from operator import mul
-from typing import Optional
+from typing import Any, Optional
 from collections import Counter, defaultdict
 
 from sympy.core import (
@@ -6642,7 +6642,7 @@ def factor_list(f:Expr, *gens, **args):
 
 
 @public
-def factor(f:Expr, *gens, deep:bool=False, **args:bool)->Expr:
+def factor(f:Expr, *gens:Any, deep:bool=False, **args:bool)->Expr:
     """
     Compute the factorization of expression, ``f``, into irreducibles. (To
     factor an integer into primes, use ``factorint``.)

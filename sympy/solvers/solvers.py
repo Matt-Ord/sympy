@@ -359,7 +359,7 @@ def checksol(f, symbol, sol=None, **flags):
     # TODO: improve solution testing
 
 
-def solve(f, *symbols, **flags):
+def solve(f:Expr, *symbols:Symbol, **flags:bool)-> Expr:
     r"""
     Algebraically solves equations and systems of equations.
 
