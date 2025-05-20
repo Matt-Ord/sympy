@@ -1,7 +1,7 @@
 from collections import defaultdict
 from typing import Union, TYPE_CHECKING
 
-from sympy.core import sympify, S, Mul, Derivative, Pow
+from sympy.core import sympify, S, Mul, Derivative, Pow, Expr
 from sympy.core.add import _unevaluated_Add, Add
 from sympy.core.assumptions import assumptions
 from sympy.core.exprtools import Factors, gcd_terms
@@ -16,10 +16,6 @@ from sympy.functions.elementary.complexes import Abs
 from sympy.polys import gcd
 from sympy.simplify.sqrtdenest import sqrtdenest
 from sympy.utilities.iterables import iterable, sift
-
-if TYPE_CHECKING:
-    
-    from sympy.core.expr import Expr
 
 
 def collect(expr:Expr, syms:Union[Expr, list[Expr]], func=None, evaluate:Union[bool, None]=None, exact:bool=False, distribute_order_term:bool=True)-> Expr:
