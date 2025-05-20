@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, overload
+from typing import TYPE_CHECKING, Union, overload
 from collections.abc import Iterable, Mapping
 from functools import reduce
 import re
@@ -1401,7 +1401,7 @@ class Expr(Basic, EvalfMixin):
                                  [ci for ci in c if list(self.args).count(ci) > 1])
         return [c, nc]
 
-    def coeff(self, x: Expr, n=1, right=False, _first=True):
+    def coeff(self, x: Expr, n:int=1, right:bool=False, _first:bool=True) -> Expr:
         """
         Returns the coefficient from the term(s) containing ``x**n``. If ``n``
         is zero then all terms independent of ``x`` will be returned.
@@ -3665,8 +3665,8 @@ class Expr(Basic, EvalfMixin):
         return (expr, hit)
 
     @cacheit
-    def expand(self, deep=True, modulus=None, power_base=True, power_exp=True,
-            mul=True, log=True, multinomial=True, basic=True, **hints):
+    def expand(self, deep:bool=True, modulus:Union[Expr, None]=None, power_base:bool=True, power_exp:bool=True,
+            mul:bool=True, log:bool=True, multinomial:bool=True, basic:bool=True, **hints):
         """
         Expand an expression using hints.
 

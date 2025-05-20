@@ -3182,7 +3182,7 @@ def latex(expr, **settings):
     return LatexPrinter(settings).doprint(expr)
 
 
-def print_latex(expr, **settings):
+def print_latex(expr:Expr, **settings:Any) -> None:
     """Prints LaTeX representation of the given expression. Takes the same
     settings as ``latex()``."""
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import overload
+from typing import Callable, TypedDict,  overload
+from typing_extensions import Unpack
 
 from collections import defaultdict
 
@@ -423,16 +424,24 @@ def signsimp(expr, evaluate=None):
     return e
 
 
-@overload
-def simplify(expr: Expr, **kwargs) -> Expr: ...
-@overload
-def simplify(expr: Boolean, **kwargs) -> Boolean: ...
-@overload
-def simplify(expr: Set, **kwargs) -> Set: ...
-@overload
-def simplify(expr: Basic, **kwargs) -> Basic: ...
 
-def simplify(expr, ratio=1.7, measure=count_ops, rational=False, inverse=False, doit=True, **kwargs):
+class SimplifyKwargs(TypedDict, total=False):
+    ratio: float
+    measure: Callable[[Expr], float]
+    rational: bool
+    inverse: bool
+    doit: bool
+
+@overload
+def simplify(expr: Expr, **kwargs:Unpack[SimplifyKwargs]) -> Expr: ...
+@overload
+def simplify(expr: Boolean, **kwargs:Unpack[SimplifyKwargs]) -> Boolean: ...
+@overload
+def simplify(expr: Set, **kwargs:Unpack[SimplifyKwargs]) -> Set: ...
+@overload
+def simplify(expr: Basic, **kwargs:Unpack[SimplifyKwargs]) -> Basic: ...
+
+def simplify(expr, ratio=1.7, measure=count_ops, rational=False, inverse=False, doit=True, **kwargs:Unpack[SimplifyKwargs]):
     """Simplifies the given expression.
 
     Explanation
@@ -897,7 +906,7 @@ def sum_add(self, other, method=0):
     return Add(self, other)
 
 
-def product_simplify(s, **kwargs):
+def product_simplify(s, **kwargs: Unpack[SimplifyKwargs]):
     """Main function for Product simplification"""
     terms = Mul.make_args(s)
     p_t = [] # Product Terms

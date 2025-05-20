@@ -4,7 +4,7 @@ lambda functions which can be used to calculate numerical values very fast.
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Callable, Literal, Union
 
 import builtins
 import inspect
@@ -14,6 +14,8 @@ import linecache
 import weakref
 
 # Required despite static analysis claiming it is not used
+from sympy.core.expr import Expr
+from sympy.core.symbol import Symbol
 from sympy.external import import_module # noqa:F401
 from sympy.utilities.exceptions import sympy_deprecation_warning
 from sympy.utilities.decorator import doctest_depends_on
@@ -193,10 +195,10 @@ def _import(module, reload=False):
 # linecache.
 _lambdify_generated_counter = 1
 
-
+Module = Literal["math", "cmath", "mpmath", "numpy", "numexpr", "scipy", "sympy", "tensorflow", "jax"]
 @doctest_depends_on(modules=('numpy', 'scipy', 'tensorflow',), python_version=(3,))
-def lambdify(args, expr, modules=None, printer=None, use_imps=True,
-             dummify=False, cse=False, docstring_limit=1000):
+def lambdify(args:tuple[Symbol, ...]|Symbol, expr:Expr, modules:Union[Module, None]=None, printer:None=None, use_imps:bool=True,
+             dummify:bool=False, cse:bool=False, docstring_limit:int=1000) -> Callable[[Any], Any]:
     """Convert a SymPy expression into a function that allows for fast
     numeric evaluation.
 

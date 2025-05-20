@@ -1,3 +1,4 @@
+from typing import Union
 from sympy.core import S, sympify, NumberKind
 from sympy.utilities.iterables import sift
 from sympy.core.add import Add
@@ -64,7 +65,7 @@ Id = S.IdentityFunction
 ###############################################################################
 
 
-def sqrt(arg, evaluate=None):
+def sqrt(arg: Expr, evaluate:Union[bool , None]=None) -> Pow:
     """Returns the principal square root.
 
     Parameters
