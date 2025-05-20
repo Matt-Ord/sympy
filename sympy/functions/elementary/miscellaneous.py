@@ -65,7 +65,7 @@ Id = S.IdentityFunction
 ###############################################################################
 
 
-def sqrt(arg: Expr, evaluate:Union[bool , None]=None) -> Pow:
+def sqrt(arg: Union[Expr, complex], evaluate:Union[bool , None]=None) -> Pow:
     """Returns the principal square root.
 
     Parameters

@@ -1,3 +1,4 @@
+from typing import Literal
 from sympy.calculus.accumulationbounds import AccumBounds
 from sympy.core import S, Symbol, Add, sympify, Expr, PoleError, Mul
 from sympy.core.exprtools import factor_terms
@@ -12,7 +13,7 @@ from sympy.polys import PolynomialError, factor
 from sympy.series.order import Order
 from .gruntz import gruntz
 
-def limit(e, z, z0, dir="+"):
+def limit(e:Expr, z:Symbol, z0:Expr, dir:Literal["-", "+"]="+") -> Expr:
     """Computes the limit of ``e(z)`` at the point ``z0``.
 
     Parameters

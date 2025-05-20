@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, overload
+from typing import TYPE_CHECKING, Literal, Union, overload
 from collections.abc import Iterable, Mapping
 from functools import reduce
 import re
@@ -3367,7 +3367,7 @@ class Expr(Basic, EvalfMixin):
         _x = Dummy('x')
         return self.subs(x, _x).diff(_x, n).subs(_x, x).subs(x, 0) * x**n / factorial(n)
 
-    def lseries(self, x=None, x0=0, dir='+', logx=None, cdir=0):
+    def lseries(self, x:Union[Expr, None]=None, x0:Union[complex, Expr]=0, dir:Literal["+", "-"]='+', logx:Literal[Expr, None]=None, cdir:int=0):
         """
         Wrapper for series yielding an iterator of the terms of the series.
 
