@@ -1758,7 +1758,7 @@ class Commutator(Function):
         if a.sort_key() > b.sort_key():
             return S.NegativeOne*cls(b, a)
 
-    def doit(self, **hints):
+    def doit(self, **hints:bool) -> Expr:
         """
         Enables the computation of complex expressions.
 

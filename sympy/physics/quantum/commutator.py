@@ -206,7 +206,7 @@ class Commutator(Expr):
         # No changes, so return self
         return self
 
-    def doit(self, **hints):
+    def doit(self, **hints:bool)-> Expr:
         """ Evaluate commutator """
         # Keep the import of Operator here to avoid problems with
         # circular imports.
