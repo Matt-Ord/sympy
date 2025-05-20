@@ -423,10 +423,9 @@ def signsimp(expr, evaluate=None):
         e = e.replace(lambda x: x.is_Mul and -(-x) != x, lambda x: -(-x))
     return e
 
-class SimplifyExtraKwargs(TypedDict):
-    pass
 
-class SimplifyKwargs(TypedDict):
+
+class SimplifyKwargs(TypedDict, total=False):
     ratio: float
     measure: Callable[[Expr], float]
     rational: bool
