@@ -4,7 +4,7 @@ lambda functions which can be used to calculate numerical values very fast.
 """
 
 from __future__ import annotations
-from typing import Any, Callable, Literal, Union
+from typing import Any, Callable, Literal, Union, TYPE_CHECKING
 
 import builtins
 import inspect
@@ -14,15 +14,16 @@ import linecache
 import weakref
 
 # Required despite static analysis claiming it is not used
-from sympy.core.expr import Expr
-from sympy.core.symbol import Symbol
 from sympy.external import import_module # noqa:F401
 from sympy.utilities.exceptions import sympy_deprecation_warning
 from sympy.utilities.decorator import doctest_depends_on
 from sympy.utilities.iterables import (is_sequence, iterable,
     NotIterable, flatten)
 from sympy.utilities.misc import filldedent
-
+if TYPE_CHECKING:
+    
+    from sympy.core.expr import Expr
+    from sympy.core.symbol import Symbol
 
 __doctest_requires__ = {('lambdify',): ['numpy', 'tensorflow']}
 
